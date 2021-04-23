@@ -1,14 +1,27 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-full.svg"
-    >
+  <q-page>
+    <q-input
+      v-model="text"
+      filled
+      type="textarea"
+      rows="30"
+      @input="onInput"
+    />
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  data () {
+    return {
+      text: ''
+    }
+  },
+  methods: {
+    onInput () {
+      console.log(this.text)
+    }
+  }
 }
 </script>
