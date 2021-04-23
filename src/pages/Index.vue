@@ -1,19 +1,23 @@
 <template>
   <q-page>
-    <q-input
-      v-model="text"
-      filled
-      type="textarea"
-      rows="15"
-      @input="onInput"
-    />
+    <div class="q-pa-md" style="width: 80%">
+      Dokuwiki
+      <q-input
+        v-model="text"
+        filled
+        type="textarea"
+        rows="15"
+        @input="onInput"
+      />
 
-    <q-input
-      v-model="markdown"
-      filled
-      type="textarea"
-      rows="15"
-    />
+      Markdown
+      <q-input
+        v-model="markdown"
+        filled
+        type="textarea"
+        rows="15"
+      />
+    </div>
   </q-page>
 </template>
 
@@ -54,21 +58,21 @@ export default {
       return line.replace(/''%%(.*)%%''/, '`$1`')
     },
     convertCodeTag (line) {
-      return line.replace(/<code( *)(.*)>/, "```$2")
+      return line.replace(/<code( *)(.*)>/, '```$2')
         .replace(/<\/code>/, '```')
         .replace(/<sxh( *)(.*)>/, '```$2')
         .replace(/<\/sxh>/, '```')
     },
-    convertLink(line) {
+    convertLink (line) {
       return line.replace(/\[\[(.*)\|(.*)]]/, '[$2]($1)')
     },
-    convertUnorderedListItem(line) {
+    convertUnorderedListItem (line) {
       return line.replace(/^  ( *)\* (.*)/, '* $2')
     },
-    convertOrderedListItem(line){
+    convertOrderedListItem (line) {
       return line.replace(/^  ( *)- (.*)/, '1. $2')
     },
-    convertItalic(line){
+    convertItalic (line) {
       return line.replace(/(http(s*):)\/\//, '__$1_placeholder__')
         .replace(/\/\/(.*)\/\//, '*$1*')
         .replace(/__(http(s*):)_placeholder__/, '$1//')
