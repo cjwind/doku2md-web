@@ -15,12 +15,30 @@ export default {
   name: 'PageIndex',
   data () {
     return {
-      text: ''
+      text: '',
+      markdown: ''
     }
   },
   methods: {
+    convert (doku) {
+      let lines = doku.split('\n')
+      let markdown = ''
+      lines.forEach(line => {
+        markdown += this.convertHeader(line) + '\n'
+      })
+      return markdown
+    },
+    convertHeader (line) {
+      return line.replace('====== ', '# ')
+        .replace('===== ', '## ')
+        .replace('==== ', '### ')
+        .replace('=== ', '#### ')
+        .replace('== ', '##### ')
+        .replace('= ', '###### ')
+    },
     onInput () {
-      console.log(this.text)
+      this.markdown = this.convert(this.text)
+      console.log(this.markdown)
     }
   }
 }
