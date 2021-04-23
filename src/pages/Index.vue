@@ -4,8 +4,15 @@
       v-model="text"
       filled
       type="textarea"
-      rows="30"
+      rows="15"
       @input="onInput"
+    />
+
+    <q-input
+      v-model="markdown"
+      filled
+      type="textarea"
+      rows="15"
     />
   </q-page>
 </template>
