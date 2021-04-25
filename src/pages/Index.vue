@@ -47,12 +47,12 @@ export default {
       return markdown
     },
     convertHeader (line) {
-      return line.replace('====== ', '# ')
-        .replace('===== ', '## ')
-        .replace('==== ', '### ')
-        .replace('=== ', '#### ')
-        .replace('== ', '##### ')
-        .replace('= ', '###### ')
+      return line.replace(/====== (.*) ======/, '# $1')
+        .replace(/===== (.*) =====/, '## $1')
+        .replace(/==== (.*) ====/, '### $1')
+        .replace(/=== (.*) ===/, '#### $1')
+        .replace(/== (.*) ==/, '##### $1')
+        .replace(/= (.*) =/, '###### $1')
     },
     convertMonospaced (line) {
       return line.replace(/''%%(.*)%%''/, '`$1`')
@@ -67,10 +67,10 @@ export default {
       return line.replace(/\[\[(.*)\|(.*)]]/, '[$2]($1)')
     },
     convertUnorderedListItem (line) {
-      return line.replace(/^  ( *)\* (.*)/, '* $2')
+      return line.replace(/^  ( *)\* (.*)/, '$1* $2')
     },
     convertOrderedListItem (line) {
-      return line.replace(/^  ( *)- (.*)/, '1. $2')
+      return line.replace(/^  ( *)- (.*)/, '$11. $2')
     },
     convertItalic (line) {
       return line.replace(/(http(s*):)\/\//, '__$1_placeholder__')
