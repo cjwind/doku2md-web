@@ -6,7 +6,7 @@
         v-model="text"
         filled
         type="textarea"
-        rows="15"
+        rows="20"
         @input="onInput"
       />
 
@@ -15,7 +15,7 @@
         v-model="markdown"
         filled
         type="textarea"
-        rows="15"
+        rows="20"
       />
     </div>
   </q-page>
